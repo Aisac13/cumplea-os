@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
+body {
+    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+    background-size: cover;
+    animation: slidein 100s infinite alternate forwards;
+    margin: 0;
+    overflow: hidden;
+}
+
+@keyframes slidein {
+    from {
+        background-position: top;
+        background-size: 3000px;
+    }
+    to {
+        background-position: -100px 0px;
+        background-size: 2750px;
+    }
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: rgba(75, 75, 250, 0.3);
+    border-radius: 3px;
+}
+
+.center h1, .center p {
+    text-align: center;
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+    text-transform: uppercase;
+    margin: 5px 0;
+}
+
+.gift-box {
+    width: 300px; /* Aumenta el tamaño de la caja */
+    height: 300px; /* Aumenta el tamaño de la caja */
+    background-color: #fff;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s ease; /* Añadir transición al tamaño */
+}
+
+.lid {
+    width: 300px; /* Aumenta el tamaño de la tapa */
+    height: 300px; /* Aumenta el tamaño de la tapa */
+    background-image: url('https://thumbs.dreamstime.com/b/caja-de-regalo-del-garabato-con-el-arco-109555318.jpg'); /* URL de la imagen para la tapa */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left; /* Cambio del eje de rotación */
+    transition: transform 0.5s ease;
+}
+
+.gift-box.open {
+    transform: scale(1.1); /* Aumenta el tamaño al abrir */
+}
+
+.gift-box.open .lid {
+    transform: rotateY(-90deg); /* La tapa gira en el eje Y hacia la izquierda */
+}
+
+.images {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px; /* Espacio adicional para asegurar que las imágenes encajen bien */
+    display: flex; /* Cambia a un diseño flexible */
+    flex-wrap: wrap; /* Permite que las imágenes se ajusten en varias filas */
+    gap: 5px; /* Espacio entre las imágenes */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.gift-box.open .images {
+    opacity: 1;
+}
+
+.images img {
+    width: calc(50% - 2.5px); /* Dos imágenes por fila con un pequeño espacio */
+    height: 120px; /* Ajusta la altura de las imágenes */
+    object-fit: cover; /* Asegura que las imágenes cubran el espacio sin distorsión */
+    border-radius: 5px;
+}
+
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Comienza pequeño */
+    color: #FF69B4; /* Color del mensaje */
+    font-size: 36px; /* Aumenta el tamaño del mensaje */
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.5s ease; /* Animación de transformación */
+}
+
+.gift-box.open .message {
+    transform: translate(-50%, -50%) scale(1); /* Escala al tamaño normal */
+    animation: fadeOut 2s forwards 0.5s; /* Desaparece después de 0.5s */
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+}
+
+.confetti.active {
+    display: block;
+}
